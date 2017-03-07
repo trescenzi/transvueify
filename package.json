@@ -1,0 +1,19 @@
+{
+  "name": "vue-compile-typescript",
+  "version": "0.0.1",
+  "description": "a typescript compiler for vue files that outputs vue files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "glob": "^7.1.1",
+    "vue-template-compiler": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1"
+  }
+}
