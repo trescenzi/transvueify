@@ -12,12 +12,12 @@ try {
 } catch(e) {};
 
 let inputIndex = process.argv.indexOf('--input');
-if ( inputIndex !== 1) {
+if (inputIndex !== -1) {
   options.input = process.argv[inputIndex + 1];
 }
 
 let outputIndex = process.argv.indexOf('--output');
-if ( outputIndex !== 1) {
+if (outputIndex !== -1) {
   options.output = process.argv[outputIndex + 1];
 }
 
