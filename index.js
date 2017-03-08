@@ -1,5 +1,4 @@
 const compiler = require('vue-template-compiler');
-const babel = require('babel-core');
 const glob = require('glob');
 const fs = require('fs');
 const rimraf = require('rimraf');
@@ -21,15 +20,26 @@ if (outputIndex !== -1) {
   options.output = process.argv[outputIndex + 1];
 }
 
+let pluginsIndex = process.argv.indexOf('--plugins');
+if (pluginsIndex !== -1) {
+  remainingOptions = process.argv.slice(pluginsIndex + 1);
+  options.plugins = [remainingOptions[0]];
+  let i = 1;
+  while (remainingOptions[i].charAt(0) !== '-') {
+    options.plugins.push(remainingOptions[i]);
+    i++;
+  }
+}
+
 if (!options.input) {
   throw new Error('Please provide input files either via transvueify.config.json or the --input flag');
 }
+console.log(options.input);
 
 if (!options.output) {
   throw new Error('Please provide output files either via transvueify.config.json or the --output flag');
 }
 
-console.log(options);
 glob(options.input, (err, files) => {
   if (err) {
     throw err;
@@ -43,12 +53,15 @@ glob(options.input, (err, files) => {
       if (err) {
         throw err;
       }
+      let parsedVueFile = compiler.parseComponent(file);
+      if (options.plugins) {
+        parsedVueFile = options.plugins.reduce((compiledFile, plugin) => require(plugin)(compiledFile), parsedVueFile);
+      } 
 
-      const parsedVueFile = compiler.parseComponent(file);
       const template = parsedVueFile.template ? `<template>${parsedVueFile.template.content}</template>` : '';
       const style = parsedVueFile.style ? `<style>${parsedVueFile.style.content}</style>` : '';
-      const babelfiedScript = `<script>${babel.transform(parsedVueFile.script.content).code}\n</script>`;
-      const outFile = template + '\n' + babelfiedScript + '\n' + style;
+      const script = parsedVueFile.script ? `<script>${parsedVueFile.script.content}</script>` : '';
+      const outFile = template + '\n' + script + '\n' + style;
       fs.writeFile(`${options.output}/${path.basename(filename)}`, outFile);
     });
   });
