@@ -1,0 +1,4 @@
+{
+  "input": "*.vue",
+  "output": "dist/"
+}
