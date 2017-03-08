@@ -34,7 +34,7 @@ if (pluginsIndex !== -1) {
 if (!options.input) {
   throw new Error('Please provide input files either via transvueify.config.json or the --input flag');
 }
-console.log(options.input);
+console.log(options);
 
 if (!options.output) {
   throw new Error('Please provide output files either via transvueify.config.json or the --output flag');

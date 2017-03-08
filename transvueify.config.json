@@ -1,4 +1,5 @@
 {
   "input": "*.vue",
-  "output": "dist/"
+  "output": "dist/",
+  "plugins": ["transvueify-plugin-babel"]
 }
