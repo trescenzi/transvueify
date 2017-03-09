@@ -1,5 +1,5 @@
 {
-  "name": "vue-compile-typescript",
+  "name": "transvueify",
   "version": "0.0.1",
   "description": "a typescript compiler for vue files that outputs vue files",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "argv": "0.0.2",
     "find-config": "^1.0.0",
@@ -21,5 +21,8 @@
     "babel": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "transvueify-plugin-babel": "git+https://github.com/trescenzi/transvueify-plugin-babel.git"
+  },
+  "bin": {
+    "transvueify": "./bin/transvueify.js"
   }
 }
