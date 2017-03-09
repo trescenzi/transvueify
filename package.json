@@ -1,6 +1,6 @@
 {
   "name": "transvueify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a typescript compiler for vue files that outputs vue files",
   "main": "index.js",
   "scripts": {
