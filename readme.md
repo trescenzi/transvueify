@@ -3,8 +3,8 @@
 Transvueify will take your complex and JS feature filled `.vue`
 files and compile them down to however simple JS you're looking for.
 The JS inside of the `<script>` in you `.vue` files will be passed
-through babel, respecting your `.babelrc`, and come out as `.vue`
-files on the other end. As many files go in will come out. This tool
+through your desired plugins, such as [transvueify-plugin-babel](https://github.com/trescenzi/transvueify-plugin-babel) ,
+and come out as transpiled `.vue` files on the other end. As many files go in will come out. This tool
 doesn't do any bundling. It simply transforms your `.vue` files mostly
 in place for use either by other tools of to be distributed directly.
 
@@ -20,6 +20,7 @@ can be provided via a `transvueify.config.json` file.
 ```js
 {
   "input": "src/**/*.vue",
-  "output": "dist/"
+  "output": "dist/",
+  "plugins": ["transvueify-plugin-babel"]
 }
 ```
