@@ -1,0 +1,10 @@
+{
+  extends: "airbnb",
+  "rules": {
+    "no-shadow": 0,
+    "no-console": 0
+  },
+  "env": {
+    "node": true,
+  }
+}
