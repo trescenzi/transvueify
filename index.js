@@ -6,6 +6,10 @@ const mkdirp = require('mkdirp');
 const path = require('path');
 const options = require('./src/options');
 
+function generateStyleTags(styles) {
+  return styles.reduce((styles, style) => `${styles}\n<style lang="${style.lang}">${style.content}</style>`, '');
+}
+
 glob(options.input, (err, files) => {
   if (err) {
     console.log('Input glob provided failed to parse:\n', err.message);
@@ -28,7 +32,7 @@ glob(options.input, (err, files) => {
       }
 
       const template = parsedVueFile.template ? `<template>${parsedVueFile.template.content}</template>` : '';
-      const style = parsedVueFile.style ? `<style>${parsedVueFile.style.content}</style>` : '';
+      const style = parsedVueFile.styles ? generateStyleTags(parsedVueFile.styles) : '';
       const script = parsedVueFile.script ? `<script>${parsedVueFile.script.content}</script>` : '';
       const outFile = `${template}\n${script}\n${style}`;
 
