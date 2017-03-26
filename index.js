@@ -36,10 +36,14 @@ glob(options.input, (err, files) => {
       const script = parsedVueFile.script ? `<script>${parsedVueFile.script.content}</script>` : '';
       const outFile = `${template}\n${script}\n${style}`;
 
-      let outputPath = `${options.output}/${filename.replace(options.basename, '')}`;
+      let outputPath;
+      
       if (options.output === 'inplace') {
         outputPath = path.basename(filename);
+      } else {
+        outputPath = path.resolve(options.output, filename.replace(options.basename, ''));
       }
+      mkdirp.sync(path.dirname(outputPath));
       fs.writeFile(outputPath, outFile);
     });
   });
