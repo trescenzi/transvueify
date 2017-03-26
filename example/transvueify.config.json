@@ -1,5 +1,6 @@
 {
-  "input": "*.vue",
+  "input": "src/**/*.vue",
   "output": "dist/",
-  "plugins": ["./plugin-babel"]
+  "basename": "src/",
+  "plugins": ["transvueify-plugin-babel"]
 }
