@@ -1,7 +1,7 @@
 {
   "name": "transvueify",
-  "version": "0.0.2",
-  "description": "a typescript compiler for vue files that outputs vue files",
+  "version": "0.0.3",
+  "description": "A .vue -> .vue file transpiler",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js"
