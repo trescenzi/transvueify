@@ -27,7 +27,7 @@ glob(options.input, (err, files) => {
       let parsedVueFile = compiler.parseComponent(file);
       if (options.plugins) {
         parsedVueFile = options.plugins.reduce(
-          /* eslint global-require: "ignore" */
+          /* eslint global-require: 0, 'import/no-dynamic-require': 0 */
           (compiledFile, plugin) => require(plugin)(compiledFile, filename), parsedVueFile);
       }
 
@@ -37,7 +37,7 @@ glob(options.input, (err, files) => {
       const outFile = `${template}\n${script}\n${style}`;
 
       let outputPath;
-      
+
       if (options.output === 'inplace') {
         outputPath = path.basename(filename);
       } else {
