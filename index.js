@@ -7,7 +7,10 @@ const path = require('path');
 const options = require('./src/options');
 
 function generateStyleTags(styles) {
-  return styles.reduce((styles, style) => `${styles}\n<style lang="${style.lang}">${style.content}</style>`, '');
+  return styles.reduce((styles, style) => {
+    const lang = styles.lang ? `lang="${style.lang}"` : '';
+    return `${styles}\n<style ${lang}>${style.content}</style>`;
+  }, '');
 }
 
 glob(options.input, (err, files) => {
