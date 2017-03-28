@@ -1,6 +1,6 @@
 {
   "name": "transvueify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A .vue -> .vue file transpiler",
   "main": "index.js",
   "scripts": {
