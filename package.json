@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint index.js"
   },
+  "repository": "trescenzi/transvueify",
   "author": "",
   "license": "MIT",
   "dependencies": {
