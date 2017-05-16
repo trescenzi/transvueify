@@ -14,11 +14,19 @@ function generateAttrString(attrHash) {
   }, '');
 }
 
+function generateTagString(name, data) {
+  if (!data) {
+    return '';
+  }
+
+  const attrs = generateAttrString(data.attrs);
+  return `<${name}${attrs}>\n${data.content}\n</${name}>`;
+}
+
 function generateStyleTags(styles) {
-  return styles.reduce((styles, parsedStyle) => {
-    const attrs = generateAttrString(attrHash);
-    const style = `<style${attrs}>${parsedStyle.content}</style>`;
-    return `${styles}\n${style}`;
+  return styles.reduce((tags, style) => {
+    const tag = generateTagString('style', style);
+    return`${tags}\n${tag}`;
   }, '');
 }
 
@@ -43,9 +51,9 @@ glob(options.input, (err, files) => {
           (compiledFile, plugin) => require(plugin)(compiledFile, filename), parsedVueFile);
       }
 
-      const template = parsedVueFile.template ? `<template>${parsedVueFile.template.content}</template>` : '';
-      const style = parsedVueFile.styles ? generateStyleTags(parsedVueFile.styles) : '';
-      const script = parsedVueFile.script ? `<script>${parsedVueFile.script.content}</script>` : '';
+      const template = generateTagString('template', parsedVueFile.template);
+      const script = generateTagString('script', parsedVueFile.script);
+      const style = generateStyleTags(parsedVueFile.styles);
       const outFile = `${template}\n${script}\n${style}`;
 
       let outputPath;
