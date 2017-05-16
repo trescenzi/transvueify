@@ -6,10 +6,19 @@ const mkdirp = require('mkdirp');
 const path = require('path');
 const options = require('./src/options');
 
+function generateAttrString(attrHash) {
+  return Object.keys(attrHash).reduce((attrs, name) => {
+    const value = attrHash[name];
+    const attr = typeof value === 'boolean' ? name : `${name}="${value}"`;
+    return `${attrs} ${attr}`;
+  }, '');
+}
+
 function generateStyleTags(styles) {
-  return styles.reduce((styles, style) => {
-    const lang = style.lang ? `lang="${style.lang}"` : '';
-    return `${styles}\n<style ${lang}>${style.content}</style>`;
+  return styles.reduce((styles, parsedStyle) => {
+    const attrs = generateAttrString(attrHash);
+    const style = `<style${attrs}>${parsedStyle.content}</style>`;
+    return `${styles}\n${style}`;
   }, '');
 }
 
