@@ -8,7 +8,7 @@ const options = require('./src/options');
 
 function generateStyleTags(styles) {
   return styles.reduce((styles, style) => {
-    const lang = styles.lang ? `lang="${style.lang}"` : '';
+    const lang = style.lang ? `lang="${style.lang}"` : '';
     return `${styles}\n<style ${lang}>${style.content}</style>`;
   }, '');
 }
