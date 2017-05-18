@@ -5,7 +5,7 @@ argv.option({
   name: 'input',
   short: 'i',
   type: 'string',
-  description: 'Provide a blob for input files',
+  description: 'Provide a glob for input files',
   example: '--input=src/**/*.vue OR -i src/**/*.vue',
 });
 
