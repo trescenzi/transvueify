@@ -64,7 +64,7 @@ glob(options.input, (err, files) => {
         outputPath = path.resolve(options.output, filename.replace(options.basename, ''));
       }
       mkdirp.sync(path.dirname(outputPath));
-      fs.writeFile('/Users/thomascrescenzi/transvueify/example/root/shit.js', outFile, (err) => {
+      fs.writeFile(outputPath, outFile, (err) => {
         if (err) {
           console.error(`\nError transpiling ${filename}\n`);
           throw(err);
